@@ -8,6 +8,18 @@ img1 = img;
 
 [y,x]=size(img1);
 [imgGradX, imgGradY] = imgradientxy(img1);
+% figure(4041)
+% imshow(imgGradX);
+% figure(4042)
+% imshow(imgGradY);
+imgGradW=imgGradX + imgGradY;
+imgGradX = imgGradW;
+
+
+% figure(4043)
+% imshow(imgGradW);
+
+
 minVal=min(min(imgGradX));
 imgGradX = imgGradX + abs(minVal);
 
@@ -32,7 +44,7 @@ for i=2:y
             c=scM(i-1, j+1);
             smallNextPx=min(a,min(b,c));
         end
-        scM(i,j)=imgGradX(i,j) + smallNextPx;
+        scM(i,j)=imgGradX(i,j) - smallNextPx;
         
     end
 end
